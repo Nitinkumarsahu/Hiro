@@ -8,10 +8,10 @@ import { ISimplifiedMessage } from '../../typings'
 export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
-            command: 'hug',
-            description: 'Hug someone!!',
+            command: 'kiss',
+            description: 'kiss someone!!',
             category: 'fun',
-            usage: `${client.config.prefix}hug @whom_you_wanna_hug`,
+            usage: `${client.config.prefix}kiss @whom_you_wanna_hug`,
             
         })
     }
