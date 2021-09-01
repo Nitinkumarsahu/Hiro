@@ -1,3 +1,4 @@
+  
 import { MessageType } from '@adiwajshing/baileys'
 import MessageHandler from '../../Handlers/MessageHandler'
 import BaseCommand from '../../lib/BaseCommand'
@@ -20,12 +21,10 @@ export default class Command extends BaseCommand {
 
         
         
-return void M.reply( await request.buffer('https://wallpapercave.com/uwp/uwp1367159.png'),
+return void M.reply(await request.buffer('https://wallpapercave.com/uwp/uwp1367159.png'),
 MessageType.image,
             undefined,
             undefined,
-           
-
             `*✨Star✨* \n\n *Wishing you to have a nice day*💗`
            
 
@@ -33,3 +32,11 @@ MessageType.image,
 
 
     }
+
+
+
+
+
+
+
+}                    
