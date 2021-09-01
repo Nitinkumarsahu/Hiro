@@ -4,6 +4,7 @@ import BaseCommand from '../lib/BaseCommand'
 import WAClient from '../lib/WAClient'
 import { ICommand, IParsedArgs, ISimplifiedMessage } from '../typings'
 import { MessageType } from '@adiwajshing/baileys'
+import request from '../../lib/request'
 
 export default class MessageHandler {
     commands = new Map<string, ICommand>()
@@ -28,7 +29,10 @@ export default class MessageHandler {
                 sender.username
             )} in ${chalk.cyanBright(groupMetadata?.subject || 'DM')}`
         )
-        if (!command) return void M.reply('BAKA,there is no such command! Try using one from the *.help* list.')
+        if (!command) return void M.reply( await request.buffer('https://wallpapercave.com/uwp/uwp1367159.png'),  MessageType.image,            undefined,
+            undefined,
+            
+            'BAKA,there is no such command! Try using one from the *.help* list.')
         const user = await this.client.getUser(M.sender.jid)
         if (user.ban) return void M.reply("You're Banned from using commands.")
         const state = await this.client.DB.disabledcommands.findOne({ command: command.config.command })
