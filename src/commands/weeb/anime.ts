@@ -12,6 +12,7 @@ export default class Command extends BaseCommand {
             description: 'Will send you random anime image.',
             category: 'weeb',
             usage: `${client.config.prefix}anime`,
+            baseXp: 30
 
         })
     }
