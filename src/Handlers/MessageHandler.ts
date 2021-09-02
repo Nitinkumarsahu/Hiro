@@ -4,7 +4,7 @@ import BaseCommand from '../lib/BaseCommand'
 import WAClient from '../lib/WAClient'
 import { ICommand, IParsedArgs, ISimplifiedMessage } from '../typings'
 import { MessageType } from '@adiwajshing/baileys'
-import request from '../../lib/request'
+
 
 export default class MessageHandler {
     commands = new Map<string, ICommand>()
