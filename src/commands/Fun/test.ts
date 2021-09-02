@@ -9,10 +9,10 @@ import  axios  from 'axios'
 export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
-            command: 'neko',
-            description: 'Will provide a random anime Neko images',
-            category: 'weeb',
-            usage: `${client.config.prefix}neko`,
+            command: 'test',
+            description: 'Well...',
+            category: 'fun',
+            usage: `${client.config.prefix}test`,
             
         })
     }
