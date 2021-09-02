@@ -4,7 +4,7 @@ import BaseCommand from '../../lib/BaseCommand'
 import request from '../../lib/request'
 import WAClient from '../../lib/WAClient'
 import { ISimplifiedMessage } from '../../typings'
-import  axios  from 'axios'
+
 
 export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
@@ -23,7 +23,9 @@ export default class Command extends BaseCommand {
         const rnekolc = rnekol[Math.floor(Math.random() * rnekol.length)];
         const neko = await axios.get('https://yuabot.com/weeb/api/v1/img/' + rnekolc)
 
-return void M.reply(await request.buffer(neko.data.payload.url), MessageType.video, 
+return void M.reply(await request.buffer(neko.data.payload.url), 
+                    
+                    MessageType.video, 
                    
                    
                    { mimetype: Mimetype.gif }
