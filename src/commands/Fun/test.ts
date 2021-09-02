@@ -24,10 +24,11 @@ export default class Command extends BaseCommand {
         const rnekolc = rnekol[Math.floor(Math.random() * rnekol.length)];
         const neko = await axios.get('https://yuabot.com/weeb/api/v1/img/' + rnekolc)
 
-return void M.reply(await request.buffer(neko.data.payload.url), Mimetype.gif, undefined, undefined, `*test ~~*`)
+return void M.reply(await request.buffer(neko.data.payload.url), MessageType.video, )
         
         
         
+        { mimetype: Mimetype.gif }
         
     
 
