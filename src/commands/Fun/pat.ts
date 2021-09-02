@@ -24,13 +24,13 @@ export default class Command extends BaseCommand {
 // let username1 = user1.replace('@s.whatsapp.net', '')
 // let username2 = user2.replace('@s.whatsapp.net', '')
 
- const n = ['./assets/videos/kiss/kiss.mp4','./assets/videos/kiss/kiss1.mp4','./assets/videos/kiss/kiss2.mp4']
+ const n = ['./assets/videos/pat/pat.mp4','./assets/videos/pat/pat1.mp4','./assets/videos/pat/pat2.mp4']
 let hug = n[Math.floor(Math.random() * n.length)]
  return void  this.client.sendMessage( M.from, { url: hug }, 
         MessageType.video, 
 
  
-          { mimetype: Mimetype.gif, caption: `@${user1.split('@')[0]} kissed @${user2.split('@')[0]}`, contextInfo: {mentionedJid : [user1, user2]} }
+          { mimetype: Mimetype.gif, caption: `@${user1.split('@')[0]} patted @${user2.split('@')[0]}`, contextInfo: {mentionedJid : [user1, user2]} }
       )         
 
 
