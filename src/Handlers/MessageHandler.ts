@@ -29,8 +29,7 @@ export default class MessageHandler {
                 sender.username
             )} in ${chalk.cyanBright(groupMetadata?.subject || 'DM')}`
         )
-        if (!command) return void M.reply( await request.buffer('https://wallpapercave.com/uwp/uwp1367159.png'),  MessageType.image,            undefined,
-            undefined,
+        if (!command) return void M.reply( 
             
             'BAKA,there is no such command! Try using one from the *.help* list.')
         const user = await this.client.getUser(M.sender.jid)
