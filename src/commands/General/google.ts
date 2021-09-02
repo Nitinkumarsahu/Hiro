@@ -10,7 +10,7 @@ export default class Command extends BaseCommand {
             command: 'google',
             aliases: ["g", "search"],
             description: 'Search on the web ',
-            category: 'general',
+            category: 'dev',
             dm: true,
             usage: `${client.config.prefix}google [query]`
         })
@@ -21,11 +21,9 @@ export default class Command extends BaseCommand {
         if (!this.client.config.gkey) return void null;
         if (!joined) return void M.reply('🔎 Provide a search term');
         const term = joined.trim()
-        await axios.get(`https://www.googleapis.com/customsearch/v1?q=${term}&key=AIzaSyCxTwqgjp_cnRTiLxA5ODx5ibUNqoVezyA&cx=baf9bdb0c631236e5`).then(res => {
+        await axios.get(`https://www.googleapis.com/customsearch/v1?q=${term}&key=${this.client.config.gkey}&cx=baf9bdb0c631236e5`).then(res => {
         // console.log(res);
-        if (res.status !== 200) return void M.reply(`🔍 Error: ${res.status}`)https://www.googleapis.com/customsearch/v1?q=${term}&key=AIzaSyCxTwqgjp_cnRTiLxA5ODx5ibUNqoVezyA&cx=baf9bdb0c631236e5`).then(res => {
-        // console.log(res);
-        if (res.status !== 200) return void M.reply
+        if (res.status !== 200) return void M.reply(`🔍 Error: ${res.status}`)
         let result = ``;
         let index = 1;
         for (const item of res.data?.items) { 
