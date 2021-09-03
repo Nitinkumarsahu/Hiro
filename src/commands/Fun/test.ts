@@ -4,6 +4,7 @@ import BaseCommand from '../../lib/BaseCommand'
 import request from '../../lib/request'
 import WAClient from '../../lib/WAClient'
 import { ISimplifiedMessage } from '../../typings'
+import  axios  from 'axios'
 
 
 export default class Command extends BaseCommand {
@@ -28,7 +29,7 @@ return void M.reply(await request.buffer(neko.data.payload.url),
                     MessageType.video, 
                    
                    
-                   { mimetype: Mimetype.gif }
+                   mimetype: Mimetype.gif 
                    
                    
                    )
