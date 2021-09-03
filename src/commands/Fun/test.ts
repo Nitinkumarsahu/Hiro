@@ -26,7 +26,7 @@ export default class Command extends BaseCommand {
 
 return void M.reply(await request.buffer(neko.data.payload.url), 
                     
-                    MessageType.video, 
+                    MessageType.video 
                    
                    
                    mimetype: Mimetype.gif 
