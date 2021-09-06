@@ -29,8 +29,7 @@ export default class MessageHandler {
                 sender.username
             )} in ${chalk.cyanBright(groupMetadata?.subject || 'DM')}`
         )
-        if (onmessage.body==='hi')
-            return this.client.reply ((M.sender.jid),'hello,id')
+        
         if (!command) return void M.reply( 
             
             'BAKA,there is no such command! Try using one from the *.help* list.')
