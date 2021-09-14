@@ -32,7 +32,7 @@ export default class MessageHandler {
         
         if (!command) return void M.reply( 
             
-            'BAKA,there is no such command! Try using one from the *.help* list.')
+            'Sorry, Do you mean !help?.')
         const user = await this.client.getUser(M.sender.jid)
         if (user.ban) return void M.reply("You're Banned from using commands.")
         const state = await this.client.DB.disabledcommands.findOne({ command: command.config.command })
