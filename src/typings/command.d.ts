@@ -30,5 +30,4 @@ export type TCategory =
     | 'fun'
     | 'reactions'
     | 'reactions2'
-    | 'weeb'
 
