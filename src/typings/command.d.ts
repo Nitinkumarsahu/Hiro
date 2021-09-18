@@ -25,8 +25,10 @@ export type TCategory =
     | 'misc'
     | 'media'
     | 'utils'
-    | 'weeb'
+    | 'dev'
     | 'category'
     | 'fun'
     | 'reactions'
     | 'reactions2'
+    | 'weeb'
+
