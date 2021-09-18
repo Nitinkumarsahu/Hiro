@@ -29,5 +29,5 @@ export type TCategory =
     | 'category'
     | 'fun'
     | 'reactions'
-    | 'reactions2'
+    | 'react'
 
