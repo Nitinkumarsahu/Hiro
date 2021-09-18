@@ -28,6 +28,6 @@ export type TCategory =
     | 'dev'
     | 'category'
     | 'fun'
-    | 'reactions'
-    | 'react'
+    | 'Reactions'
+    | 'React'
 
