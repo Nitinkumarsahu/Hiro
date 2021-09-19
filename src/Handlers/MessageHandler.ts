@@ -1,10 +1,9 @@
+import axios from 'axios'
 import chalk from 'chalk'
 import { join } from 'path'
 import BaseCommand from '../lib/BaseCommand'
 import WAClient from '../lib/WAClient'
 import { ICommand, IParsedArgs, ISimplifiedMessage } from '../typings'
-import { MessageType } from '@adiwajshing/baileys'
-
 
 export default class MessageHandler {
     commands = new Map<string, ICommand>()
@@ -12,10 +11,42 @@ export default class MessageHandler {
     constructor(public client: WAClient) {}
 
     handleMessage = async (M: ISimplifiedMessage): Promise<void> => {
-        if (M.WAMessage.key.fromMe || M.from.includes('status')) return void null
+        if (!(M.chat === 'dm') && M.WAMessage.key.fromMe && M.WAMessage.status.toString() === '2') {
+            /* 
+            BUG : It receives message 2 times and processes it twice.
+            https://github.com/adiwajshing/Baileys/blob/8ce486d/WAMessage/WAMessage.d.ts#L18529
+            https://adiwajshing.github.io/Baileys/enums/proto.webmessageinfo.webmessageinfostatus.html#server_ack
+            */
+            M.sender.jid = this.client.user.jid
+            M.sender.username = this.client.user.name || this.client.user.vname || this.client.user.short || 'Kaoi Bot'
+        } else if (M.WAMessage.key.fromMe) return void null
+
+        if (M.from.includes('status')) return void null
         const { args, groupMetadata, sender } = M
-        if (!M.groupMetadata && M.chat === 'dm') return void null;
-        if ((await this.client.getGroupData(M.from)).mod && M.groupMetadata?.admins?.includes(this.client.user.jid)) this.moderate(M)
+        if (M.chat === 'dm') {
+            if (this.client.config.chatBotUrl) {
+                const myUrl = new URL(this.client.config.chatBotUrl)
+                const params = myUrl.searchParams
+                await axios
+                    .get(
+                        `${encodeURI(
+                            `http://api.brainshop.ai/get?bid=${params.get('bid')}&key=${params.get('key')}&uid=${M.sender.jid}&msg=${M.args}`
+                        )}`
+                    )
+                    .then((res) => {
+                        if (res.status !== 200) return void M.reply(`🔍 Error: ${res.status}`)
+                        return void M.reply(res.data.cnt)
+                    })
+                    .catch(() => {
+                        M.reply(`Ummmmmmmmm.`)
+                    })
+            }
+        }
+
+        if (!M.groupMetadata && !(M.chat === 'dm')) return void null
+
+        if ((await this.client.getGroupData(M.from)).mod && M.groupMetadata?.admins?.includes(this.client.user.jid))
+            this.moderate(M)
         if (!args[0] || !args[0].startsWith(this.client.config.prefix))
             return void this.client.log(
                 `${chalk.blueBright('MSG')} from ${chalk.green(sender.username)} in ${chalk.cyanBright(
@@ -29,10 +60,7 @@ export default class MessageHandler {
                 sender.username
             )} in ${chalk.cyanBright(groupMetadata?.subject || 'DM')}`
         )
-        
-        if (!command) return void M.reply( 
-            
-            'Sorry, Do you mean !help?.')
+        if (!command) return void M.reply('Sorry, Do you mean !help?.')
         const user = await this.client.getUser(M.sender.jid)
         if (user.ban) return void M.reply("Oops! You're Banned from using commands.")
         const state = await this.client.DB.disabledcommands.findOne({ command: command.config.command })
