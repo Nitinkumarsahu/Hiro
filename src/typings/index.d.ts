@@ -4,6 +4,7 @@ export * from './message'
 export * from './command'
 export * from './mongo'
 export interface IConfig {
+    chatBotUrl: string | URL
     name: string
     mods?: string[]
     prefix: string
